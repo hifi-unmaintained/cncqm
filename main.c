@@ -19,11 +19,13 @@
 #include <stdio.h>
 #include <time.h>
 
+#define PORT 8054
+
 #define START_GAME \
             "[Internet]\r\n" \
             "Address=%s\r\n" \
             "Host=%d\r\n" \
-            "Port=5009\r\n" \
+            "Port=%d\r\n" \
             "GameID=1234\r\n" \
             "StartTime=5678\r\n" \
             "HWND=0\r\n" \
@@ -193,24 +195,24 @@ int main(int argc, char **argv)
     }
 
     DWORD len,tmp;
-    int is_host = atoi(argv[1]);
+    int is_host = atoi(argv[1]) ? 1 : 0;
     char *remote_host = argv[2];
 
     char handle[16];
-    sprintf(handle, "Player%d", is_host+1);
+    sprintf(handle, "Player%d", is_host ? 1 : 2);
 
     /* zero the 8 byte header */
     memset(poke, 0, 8);
 
     /* write the actual poke data after the header */
-    sprintf(poke+8, START_GAME, remote_host, is_host, handle, is_host+1, is_host);
+    sprintf(poke+8, START_GAME, remote_host, is_host, PORT, handle, is_host+1, is_host);
 
     /* write the poke length in the header, little-endian */
     len = strlen(poke+8);
     tmp = SwapFourBytes(len);
     memcpy(poke, &tmp, 4);
 
-    printf("CNCQM: We are %s, remote player at %s\n", is_host ? "the host" : "NOT hosting", remote_host);
+    printf("CNCQM: We are %s, remote player at %s:%d\n", is_host ? "the host" : "the client", remote_host, PORT);
 
     DdeNameService(dde, strWCHAT, 0L, DNS_REGISTER);
 
