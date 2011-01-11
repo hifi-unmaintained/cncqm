@@ -47,16 +47,6 @@
             "MaxAhead=15\r\n" \
             "SendRate=5\r\n"
 
-DWORD SwapFourBytes(DWORD dw)
-{
-    register DWORD tmp;
-    tmp =  (dw & 0x000000FF);
-    tmp = ((dw & 0x0000FF00) >> 0x08) | (tmp << 0x08);
-    tmp = ((dw & 0x00FF0000) >> 0x10) | (tmp << 0x08);
-    tmp = ((dw & 0xFF000000) >> 0x18) | (tmp << 0x08);
-    return(tmp);
-}
-
 DWORD dde = 0;
 
 HSZ strWCHAT;
@@ -194,7 +184,7 @@ int main(int argc, char **argv)
         return 1;
     }
 
-    DWORD len,tmp;
+    DWORD len;
     int is_host = atoi(argv[1]) ? 1 : 0;
     char *remote_host = argv[2];
 
@@ -207,10 +197,9 @@ int main(int argc, char **argv)
     /* write the actual poke data after the header */
     sprintf(poke+8, START_GAME, remote_host, is_host, PORT, handle, is_host+1, is_host);
 
-    /* write the poke length in the header, little-endian */
-    len = strlen(poke+8);
-    tmp = SwapFourBytes(len);
-    memcpy(poke, &tmp, 4);
+    /* write the poke length in the header, big-endian */
+    len = htonl(strlen(poke+8));
+    memcpy(poke, &len, 4);
 
     printf("CNCQM: We are %s, remote player at %s:%d\n", is_host ? "the host" : "the client", remote_host, PORT);
 

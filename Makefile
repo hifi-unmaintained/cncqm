@@ -5,7 +5,7 @@ WINDRES=i586-mingw32msvc-windres
 all: debug
 
 debug: main.c
-	$(CC) $(CFLAGS) -D_DEBUG -o cncqm.exe main.c
+	$(CC) $(CFLAGS) -D_DEBUG -o cncqm.exe main.c -lws2_32
 
 clean:
 	rm -f cncqm.exe
