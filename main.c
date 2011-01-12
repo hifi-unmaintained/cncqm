@@ -278,6 +278,9 @@ int main(int argc, char **argv)
                 printf("cncqm at %s\n", buf);
                 RegSetValue(HKEY_CLASSES_ROOT, "cncqm", REG_SZ, "URL:Command & Conquer Quick Match Protocol", 0);
 
+                RegOpenKey(HKEY_CLASSES_ROOT, "cncqm", &hKey);
+                RegSetValueEx(hKey, "URL Protocol", 0, REG_SZ, (const BYTE *)"", 1);
+
                 if (RegSetValue(HKEY_CLASSES_ROOT, "cncqm\\shell\\open\\command", REG_SZ, buf, 0) == ERROR_SUCCESS)
                 {
                     MessageBox(NULL, "CnCQM successfully registered!", TITLE, MB_OK|MB_ICONINFORMATION);
