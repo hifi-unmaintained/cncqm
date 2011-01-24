@@ -1,0 +1,138 @@
+#cncqm {
+    width: 600px;
+    height: 300px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -150px 0 0 -300px;
+    font-family: sans-serif;
+    font-size: 10pt;
+    color: #3bb34f;
+    background-color: black;
+    text-align: left;
+}
+
+#cncqm button {
+    border-top: 2px solid #276c21;
+    border-left: 2px solid #276c21;
+    border-right: 2px solid #032601;
+    border-bottom: 2px solid #032601;
+    background-color: #003600;
+    color: #126b15;
+    font-weight: bold;
+    font-size: 12px;
+    text-transform: uppercase;
+    padding: 3px;
+    margin: 0;
+}
+
+#cncqm button:active {
+    border-top: 2px solid #032601;
+    border-left: 2px solid #032601;
+    border-right: 2px solid #276c21;
+    border-bottom: 2px solid #276c21;
+    background-color: #003600;
+    color: #36a944;
+}
+
+#cncqm input.text {
+    background-color: black;
+    border: 1px solid #a8a8a8;
+    color: #36a944;
+    font-size: 12px;
+    padding: 2px;
+}
+
+#cncqm div.players {
+    position: absolute;
+    top: 0;
+    left: 80%;
+    right: 0;
+    bottom: 51%;
+    border: 1px solid #a8a8a8;
+}
+
+#cncqm div.games {
+    position: absolute;
+    top: 51%;
+    left: 80%;
+    right: 0;
+    bottom: 0;
+    border: 1px solid #a8a8a8;
+}
+
+#cncqm div.chat {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 21%;
+    bottom: 30%;
+    border: 1px solid #a8a8a8;
+}
+
+#cncqm div.options {
+    position: absolute;
+    top: 72%;
+    bottom: 0;
+    left: 0;
+    right: 21%;
+    border: 1px solid #a8a8a8;
+    background-image: url(../img/ajax-loader.gif);
+    background-position: -100px -100px;
+    background-repeat: no-repeat;
+}
+
+#cncqm div h2 {
+    display: block;
+    background-image: url(../img/title-corner-l.png);
+    background-position: 0% 50%;
+    background-repeat: no-repeat;
+    text-align: center;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 12px;
+    height: 17px;
+    margin: 3px;
+    padding: 0;
+}
+
+#cncqm div h2 span {
+    display: block;
+    background-image: url(../img/title-corner-r.png);
+    background-position: 100% 50%;
+    background-repeat: no-repeat;
+    height: 17px;
+}
+
+#cncqm div.chat pre {
+    margin: 5px;
+    font-size: 12px;
+}
+
+#cncqm div.chat input {
+    font-family: monospace;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border: 0;
+    background-color: black;
+    color: #3bb34f;
+    border-top: 1px solid #a8a8a8;
+    margin: 0;
+    padding: 2px;
+}
+
+#cncqm div.options div.host {
+    text-align: center;
+}
+
+#cncqm div.options button {
+    margin-left: 10px;
+    width: 120px;
+    height: 25px;
+}
+
+#cncqm div.options div.host {
+    margin-top: 15px;
+}
